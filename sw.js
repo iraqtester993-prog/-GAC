@@ -1,4 +1,4 @@
-const CACHE_NAME = 'gac-store-v1';
+const CACHE_NAME = 'gac-store-v2';
 const ASSETS = [
     '/',
     '/index.html',
@@ -6,11 +6,14 @@ const ASSETS = [
     '/js/app.js',
     '/components/AppHeader.js',
     '/components/AppNavbar.js',
+    '/components/GuestWarning.js',
+    '/pages/LoginPage.js',
     '/pages/HomePage.js',
     '/pages/CategoriesPage.js',
     '/pages/CartPage.js',
     '/pages/InstallmentsPage.js',
     '/pages/AccountPage.js',
+    '/pages/CategoryPage.js',
     '/manifest.json'
 ];
 

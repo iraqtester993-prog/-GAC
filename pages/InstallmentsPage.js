@@ -4,7 +4,19 @@ const InstallmentsPage = {
         <div class="installments-page">
             <h1 class="page-title">أقساطي</h1>
 
-            <div v-if="installments.length">
+            <div v-if="isGuest" class="guest-restricted-view">
+                <div class="guest-restricted-icon">
+                    <span class="material-symbols-outlined">receipt_long</span>
+                </div>
+                <div class="guest-restricted-title">الأقساط</div>
+                <div class="guest-restricted-desc">يجب تسجيل الدخول لمتابعة أقساطك وادفعاتها</div>
+                <button class="guest-restricted-btn" @click="goCreate">
+                    <span class="material-symbols-outlined">person_add</span>
+                    إنشاء حساب مجاني
+                </button>
+            </div>
+
+            <div v-else-if="installments.length">
                 <div class="installment-card" v-for="inst in installments" :key="inst.id">
                     <div class="installment-header">
                         <span class="installment-order-id">طلب رقم #{{ inst.orderId }}</span>
@@ -42,6 +54,7 @@ const InstallmentsPage = {
     `,
     data() {
         return {
+            isGuest: !!(JSON.parse(localStorage.getItem('gac-user') || '{}').isGuest),
             installments: [
                 {
                     id: 1,
@@ -80,6 +93,12 @@ const InstallmentsPage = {
                     statusClass: 'late'
                 }
             ]
+        }
+    },
+    methods: {
+        goCreate() {
+            localStorage.removeItem('gac-user');
+            this.$router.push('/login');
         }
     }
 };

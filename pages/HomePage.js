@@ -2,6 +2,8 @@ const HomePage = {
     name: 'HomePage',
     template: `
         <div class="home-page">
+            <guest-warning feature="إضافة المنتجات للمفضلة" @close="showGuestWarn = false" v-if="showGuestWarn"></guest-warning>
+
             <div class="hero-slider" @touchstart="onTouchStart" @touchmove="onTouchMove" @touchend="onTouchEnd">
                 <div class="hero-track" :style="{ transform: 'translateX(' + (currentSlide * -100) + '%)' }">
                     <div class="hero-slide" v-for="(slide, i) in slides" :key="i">
@@ -56,8 +58,9 @@ const HomePage = {
                 <div class="product-card" v-for="p in dailyDeals" :key="p.id">
                     <div class="product-image-wrap">
                         <img :src="p.image" :alt="p.name" referrerpolicy="no-referrer" @error="productImageError($event)">
-                        <span class="product-discount" v-if="p.discount">-{{ p.discount }}%</span>
-                        <button class="product-fav" :class="{ liked: p.liked }" @click.stop="p.liked = !p.liked">
+                        <div class="installment-ribbon" v-if="p.installment"><span>أقساط</span></div>
+                        <span class="product-discount" v-if="p.discount && !p.installment">-{{ p.discount }}%</span>
+                        <button class="product-fav" :class="{ liked: p.liked }" @click.stop="toggleFav(p)">
                             <span class="material-symbols-outlined">{{ p.liked ? 'favorite' : 'favorite_border' }}</span>
                         </button>
                     </div>
@@ -92,8 +95,9 @@ const HomePage = {
                 <div class="product-card" v-for="p in bestSellers" :key="p.id">
                     <div class="product-image-wrap">
                         <img :src="p.image" :alt="p.name" referrerpolicy="no-referrer" @error="productImageError($event)">
-                        <span class="product-discount" v-if="p.discount">-{{ p.discount }}%</span>
-                        <button class="product-fav" :class="{ liked: p.liked }" @click.stop="p.liked = !p.liked">
+                        <div class="installment-ribbon" v-if="p.installment"><span>أقساط</span></div>
+                        <span class="product-discount" v-if="p.discount && !p.installment">-{{ p.discount }}%</span>
+                        <button class="product-fav" :class="{ liked: p.liked }" @click.stop="toggleFav(p)">
                             <span class="material-symbols-outlined">{{ p.liked ? 'favorite' : 'favorite_border' }}</span>
                         </button>
                     </div>
@@ -128,7 +132,8 @@ const HomePage = {
                 <div class="product-card" v-for="p in newArrivals" :key="p.id">
                     <div class="product-image-wrap">
                         <img :src="p.image" :alt="p.name" referrerpolicy="no-referrer" @error="productImageError($event)">
-                        <button class="product-fav" :class="{ liked: p.liked }" @click.stop="p.liked = !p.liked">
+                        <div class="installment-ribbon" v-if="p.installment"><span>أقساط</span></div>
+                        <button class="product-fav" :class="{ liked: p.liked }" @click.stop="toggleFav(p)">
                             <span class="material-symbols-outlined">{{ p.liked ? 'favorite' : 'favorite_border' }}</span>
                         </button>
                     </div>
@@ -162,8 +167,9 @@ const HomePage = {
                 <div class="product-card" v-for="p in hotDeals" :key="p.id">
                     <div class="product-image-wrap">
                         <img :src="p.image" :alt="p.name" referrerpolicy="no-referrer" @error="productImageError($event)">
-                        <span class="product-discount" v-if="p.discount">-{{ p.discount }}%</span>
-                        <button class="product-fav" :class="{ liked: p.liked }" @click.stop="p.liked = !p.liked">
+                        <div class="installment-ribbon" v-if="p.installment"><span>أقساط</span></div>
+                        <span class="product-discount" v-if="p.discount && !p.installment">-{{ p.discount }}%</span>
+                        <button class="product-fav" :class="{ liked: p.liked }" @click.stop="toggleFav(p)">
                             <span class="material-symbols-outlined">{{ p.liked ? 'favorite' : 'favorite_border' }}</span>
                         </button>
                     </div>
@@ -192,6 +198,8 @@ const HomePage = {
             slideTimer: null,
             touchStartX: 0,
             touchEndX: 0,
+            showGuestWarn: false,
+            isGuest: !!(JSON.parse(localStorage.getItem('gac-user') || '{}').isGuest),
             slides: [
                 {
                     badge: 'عرض لفترة محدودة',
@@ -295,6 +303,10 @@ const HomePage = {
         },
         sliderImgError(e) {
             e.target.src = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none"><rect width="100" height="100" rx="8" fill="%231a3a5c"/><text x="50" y="55" text-anchor="middle" fill="%23c9a243" font-size="14" font-family="sans-serif">صورة</text></svg>');
+        },
+        toggleFav(p) {
+            if (this.isGuest) { this.showGuestWarn = true; return; }
+            p.liked = !p.liked;
         },
         catImgError(e) {
             e.target.src = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none"><rect width="100" height="100" rx="8" fill="%231a3a5c"/><text x="50" y="55" text-anchor="middle" fill="%23c9a243" font-size="14" font-family="sans-serif">قسم</text></svg>');

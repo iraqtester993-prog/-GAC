@@ -13,7 +13,8 @@ const CategoryPage = {
                 <div class="product-card" v-for="p in products" :key="p.id">
                     <div class="product-image-wrap">
                         <img :src="p.image" :alt="p.name" @error="imgError($event)">
-                        <span class="product-discount" v-if="p.discount">-{{ p.discount }}%</span>
+                        <div class="installment-ribbon" v-if="p.installment"><span>أقساط</span></div>
+                        <span class="product-discount" v-if="p.discount && !p.installment">-{{ p.discount }}%</span>
                         <button class="product-fav" :class="{ liked: p.liked }" @click.stop="p.liked = !p.liked">
                             <span class="material-symbols-outlined">{{ p.liked ? 'favorite' : 'favorite_border' }}</span>
                         </button>

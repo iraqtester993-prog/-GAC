@@ -38,20 +38,27 @@
 <body>
     <div id="app">
         <div class="app-container">
-            <app-header></app-header>
-            <main class="main-content">
-                <router-view v-slot="{ Component }">
-                    <transition name="page-fade" mode="out-in">
-                        <component :is="Component" />
-                    </transition>
-                </router-view>
-            </main>
-            <app-navbar></app-navbar>
+            <template v-if="$route.path === '/login'">
+                <router-view></router-view>
+            </template>
+            <template v-else>
+                <app-header></app-header>
+                <main class="main-content">
+                    <router-view v-slot="{ Component }">
+                        <transition name="page-fade" mode="out-in">
+                            <component :is="Component" />
+                        </transition>
+                    </router-view>
+                </main>
+                <app-navbar></app-navbar>
+            </template>
         </div>
     </div>
 
+    <script type="text/javascript" src="components/GuestWarning.js"></script>
     <script type="text/javascript" src="components/AppHeader.js"></script>
     <script type="text/javascript" src="components/AppNavbar.js"></script>
+    <script type="text/javascript" src="pages/LoginPage.js"></script>
     <script type="text/javascript" src="pages/HomePage.js"></script>
     <script type="text/javascript" src="pages/CategoriesPage.js"></script>
     <script type="text/javascript" src="pages/CartPage.js"></script>

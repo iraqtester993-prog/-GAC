@@ -4,7 +4,22 @@ const CartPage = {
         <div class="cart-page">
             <h1 class="page-title">سلة التسوق</h1>
 
-            <div v-if="cart.length > 0">
+            <div v-if="isGuest" class="guest-restricted">
+                <guest-warning feature="إضافة المنتجات للسلة والشراء" @close="showWarning = false" v-if="showWarning"></guest-warning>
+                <div class="guest-restricted-view">
+                    <div class="guest-restricted-icon">
+                        <span class="material-symbols-outlined">shopping_cart</span>
+                    </div>
+                    <div class="guest-restricted-title">سلة التسوق</div>
+                    <div class="guest-restricted-desc">يجب تسجيل الدخول لإضافة المنتجات للسلة واتمام الشراء</div>
+                    <button class="guest-restricted-btn" @click="goCreate">
+                        <span class="material-symbols-outlined">person_add</span>
+                        إنشاء حساب مجاني
+                    </button>
+                </div>
+            </div>
+
+            <div v-else-if="cart.length > 0">
                 <div class="cart-items">
                     <div class="cart-item" v-for="item in cart" :key="item.id">
                         <div class="cart-item-img">
@@ -63,7 +78,9 @@ const CartPage = {
     `,
     data() {
         return {
-            cart: JSON.parse(localStorage.getItem('gac-cart') || '[]')
+            cart: JSON.parse(localStorage.getItem('gac-cart') || '[]'),
+            showWarning: false,
+            isGuest: !!(JSON.parse(localStorage.getItem('gac-user') || '{}').isGuest)
         }
     },
     computed: {
@@ -103,6 +120,10 @@ const CartPage = {
         },
         imgError(e) {
             e.target.src = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="8" fill="%231a3a5c"/><text x="50" y="55" text-anchor="middle" fill="%23c9a243" font-size="14">صورة</text></svg>');
+        },
+        goCreate() {
+            localStorage.removeItem('gac-user');
+            this.$router.push('/login');
         }
     },
     watch: {

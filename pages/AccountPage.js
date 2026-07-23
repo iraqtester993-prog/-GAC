@@ -4,14 +4,15 @@ const AccountPage = {
         <div class="account-page">
             <div class="account-profile">
                 <div class="account-avatar">
-                    <span class="material-symbols-outlined">person</span>
+                    <span class="material-symbols-outlined">{{ isGuest ? 'explore' : 'person' }}</span>
                 </div>
-                <div class="account-name">أحمد محمد</div>
-                <div class="account-email">ahmed@example.com</div>
+                <div class="account-name">{{ userName }}</div>
+                <div class="account-email" v-if="!isGuest">{{ userPhone }}</div>
+                <div class="account-email" v-else>حساب تجريبي - تصفح فقط</div>
             </div>
 
             <div class="account-menu">
-                <div class="account-card" v-for="item in menuItems" :key="item.title">
+                <div class="account-card" v-for="item in visibleMenuItems" :key="item.title" @click="handleMenu(item)">
                     <div class="account-card-icon">
                         <span class="material-symbols-outlined">{{ item.icon }}</span>
                     </div>
@@ -24,21 +25,51 @@ const AccountPage = {
                     </div>
                 </div>
             </div>
+
+            <guest-warning :feature="guestFeature" @close="showWarning = false" v-if="showWarning"></guest-warning>
         </div>
     `,
     data() {
+        const user = JSON.parse(localStorage.getItem('gac-user') || '{}');
         return {
-            menuItems: [
-                { icon: 'shopping_bag', title: 'طلباتي', desc: 'تتبع طلباتك و_history' },
-                { icon: 'location_on', title: 'عناويني', desc: 'إدارة عناوين الشحن' },
-                { icon: 'favorite', title: 'المفضلة', desc: 'المنتجات المحفوظة' },
-                { icon: 'payment', title: 'طرق الدفع', desc: 'إدارة البطاقات والمحافظ' },
-                { icon: 'receipt_long', title: 'أقساطي', desc: 'متابعة الاقساط المستحقة' },
-                { icon: 'support_agent', title: 'الدعم الفني', desc: 'تواصل معنا' },
-                { icon: 'settings', title: 'الإعدادات', desc: 'تفضيلات الحساب' },
-                { icon: 'info', title: 'عن التطبيق', desc: 'العصر الذهبي v1.0.0' },
-                { icon: 'logout', title: 'تسجيل الخروج', desc: 'الخروج من الحساب' }
+            isGuest: !!user.isGuest,
+            userName: user.name || 'مستخدم',
+            userPhone: user.phone || '',
+            showWarning: false,
+            guestFeature: '',
+            allMenuItems: [
+                { icon: 'shopping_bag', title: 'طلباتي', desc: 'تتبع طلباتك وسجلها', guest: false },
+                { icon: 'location_on', title: 'عناويني', desc: 'إدارة عناوين الشحن', guest: false },
+                { icon: 'favorite', title: 'المفضلة', desc: 'المنتجات المحفوظة', guest: false },
+                { icon: 'payment', title: 'طرق الدفع', desc: 'إدارة البطاقات والمحافظ', guest: false },
+                { icon: 'receipt_long', title: 'أقساطي', desc: 'متابعة الاقساط المستحقة', guest: false },
+                { icon: 'support_agent', title: 'الدعم الفني', desc: 'تواصل معنا', guest: true },
+                { icon: 'settings', title: 'الإعدادات', desc: 'تفضيلات الحساب', guest: true },
+                { icon: 'info', title: 'عن التطبيق', desc: 'العصر الذهبي v1.0.0', guest: true },
+                { icon: 'logout', title: 'تسجيل الخروج', desc: 'الخروج من الحساب', guest: true }
             ]
+        }
+    },
+    computed: {
+        visibleMenuItems() {
+            if (this.isGuest) {
+                return this.allMenuItems.filter(i => i.guest);
+            }
+            return this.allMenuItems;
+        }
+    },
+    methods: {
+        handleMenu(item) {
+            if (item.title === 'تسجيل الخروج') {
+                localStorage.removeItem('gac-user');
+                this.$router.push('/login');
+                return;
+            }
+            if (this.isGuest && !item.guest) {
+                this.guestFeature = item.title;
+                this.showWarning = true;
+                return;
+            }
         }
     }
 };
