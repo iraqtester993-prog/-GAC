@@ -7,13 +7,11 @@ const LoginPage = {
                     <div class="splash-logo">
                         <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect width="120" height="120" rx="28" fill="#1a3a5c"/>
-                            <path d="M30 80V40h8l12 22 12-22h8v40h-7V52l-13 23-13-23v28h-7z" fill="#c9a243"/>
-                            <circle cx="92" cy="42" r="6" fill="#c9a243" opacity="0.6"/>
-                            <rect x="20" y="92" width="80" height="3" rx="1.5" fill="#c9a243" opacity="0.3"/>
+                            <text x="60" y="72" text-anchor="middle" font-size="38" font-weight="900" font-family="sans-serif" fill="#c9a243" letter-spacing="-1">GAC</text>
+                            <rect x="20" y="85" width="80" height="3" rx="1.5" fill="#c9a243" opacity="0.3"/>
                         </svg>
                     </div>
-                    <div class="splash-title">العصر الذهبي</div>
-                    <div class="splash-sub">متجرك الإلكتروني المتكامل</div>
+                    <div class="splash-sub">العصر الذهبي</div>
                     <div class="splash-loader">
                         <div class="splash-loader-bar"></div>
                     </div>
@@ -26,9 +24,8 @@ const LoginPage = {
                         <div class="login-logo">
                             <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <rect width="100" height="100" rx="22" fill="#1a3a5c"/>
-                                <path d="M25 68V32h7l10 18.5L52 32h7v36h-6V42L44 61 31 42v26h-6z" fill="#c9a243"/>
-                                <circle cx="78" cy="35" r="5" fill="#c9a243" opacity="0.6"/>
-                                <rect x="18" y="78" width="64" height="2.5" rx="1.25" fill="#c9a243" opacity="0.3"/>
+                                <text x="50" y="62" text-anchor="middle" font-size="32" font-weight="900" font-family="sans-serif" fill="#c9a243" letter-spacing="-1">GAC</text>
+                                <rect x="16" y="74" width="68" height="2.5" rx="1.25" fill="#c9a243" opacity="0.3"/>
                             </svg>
                         </div>
                         <div class="login-welcome">مرحباً بك</div>

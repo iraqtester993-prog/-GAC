@@ -8,14 +8,14 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#1a3a5c">
-    <meta name="apple-mobile-web-app-title" content="العصر الذهبي">
+    <meta name="apple-mobile-web-app-title" content="GAC">
     <meta name="msapplication-TileColor" content="#1a3a5c">
-    <meta name="description" content="العصر الذهبي - متجرك الإلكتروني المتكامل">
+    <meta name="description" content="GAC - Golden Age Center - Your integrated online store">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
-    <title>العصر الذهبي - تسوق أونلاين</title>
+    <title>GAC - تسوق أونلاين</title>
     <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='36' fill='%231a3a5c'/%3E%3Ctext x='90' y='105' text-anchor='middle' font-size='60' font-family='sans-serif' font-weight='bold' fill='%23c9a243'%3E%D8%B0%3C/text%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -43,7 +43,17 @@
             </template>
             <template v-else>
                 <app-header></app-header>
-                <main class="main-content">
+                <main class="main-content" @touchstart="onPullStart" @touchmove="onPullMove" @touchend="onPullEnd" ref="mainContent">
+                    <div class="pull-indicator" :class="{ active: pullActive || refreshing }" :style="{ transform: 'translateY(' + pullOffset + 'px)' }">
+                        <div class="pull-shadow"></div>
+                        <div class="pull-logo-wrap">
+                            <svg class="pull-spinner" :class="{ spinning: refreshing }" viewBox="0 0 50 50">
+                                <circle cx="25" cy="25" r="20" fill="none" stroke="rgba(201,162,67,0.15)" stroke-width="3"/>
+                                <circle cx="25" cy="25" r="20" fill="none" stroke="#c9a243" stroke-width="3" stroke-linecap="round" stroke-dasharray="80 200"/>
+                            </svg>
+                            <div class="pull-gac">GAC</div>
+                        </div>
+                    </div>
                     <router-view v-slot="{ Component }">
                         <transition name="page-fade" mode="out-in">
                             <component :is="Component" />

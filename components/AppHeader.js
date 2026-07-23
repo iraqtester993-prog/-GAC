@@ -9,7 +9,7 @@ const AppHeader = {
             </div>
 
             <div class="header-title" @click="goHome">
-                <span class="title-gold">العصر </span><span class="title-white">الذهبي</span>
+                <span class="title-gold">G</span><span class="title-white">A</span><span class="title-gold">C</span>
             </div>
 
             <div class="header-left">
