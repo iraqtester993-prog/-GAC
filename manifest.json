@@ -1,0 +1,24 @@
+{
+    "name": "العصر الذهبي - متجر تسوق إلكتروني",
+    "short_name": "العصر الذهبي",
+    "description": "متجرك الإلكتروني المتكامل - تسوق أونلاين بأفضل الأسعار",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0b1a2e",
+    "theme_color": "#1a3a5c",
+    "orientation": "portrait",
+    "dir": "rtl",
+    "lang": "ar",
+    "icons": [
+        {
+            "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='32' fill='%231a3a5c'/%3E%3Ctext x='96' y='110' text-anchor='middle' font-size='72' font-family='sans-serif' font-weight='bold' fill='%23c9a243'%3Eذ%3C/text%3E%3C/svg%3E",
+            "sizes": "192x192",
+            "type": "image/svg+xml"
+        },
+        {
+            "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='64' fill='%231a3a5c'/%3E%3Ctext x='256' y='300' text-anchor='middle' font-size='200' font-family='sans-serif' font-weight='bold' fill='%23c9a243'%3Eذ%3C/text%3E%3C/svg%3E",
+            "sizes": "512x512",
+            "type": "image/svg+xml"
+        }
+    ]
+}
