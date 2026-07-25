@@ -3,19 +3,16 @@ const AppHeader = {
     template: `
         <header class="app-header">
             <div class="header-right">
-                <button class="header-icon-btn" @click="toggleSearch" title="بحث">
-                    <span class="material-symbols-outlined">search</span>
+                <button class="header-icon-btn" @click="toggleMenu" title="القائمة">
+                    <span class="material-symbols-outlined">menu</span>
                 </button>
             </div>
 
             <div class="header-title" @click="goHome">
-                <span class="title-gold">G</span><span class="title-white">A</span><span class="title-gold">C</span>
+                <img class="header-logo" src="icons/logo.svg" alt="GAC">
             </div>
 
             <div class="header-left">
-                <button class="header-icon-btn" @click="toggleTheme" title="تبديل المود">
-                    <span class="material-symbols-outlined">{{ isDark ? 'light_mode' : 'dark_mode' }}</span>
-                </button>
                 <button class="header-icon-btn" @click="toggleNotif" title="الاشعارات">
                     <span class="material-symbols-outlined">notifications</span>
                     <span class="header-badge" v-if="unreadCount > 0">{{ unreadCount }}</span>
@@ -53,7 +50,7 @@ const AppHeader = {
                             </div>
                             <div v-if="filteredResults.length === 0" style="text-align:center;padding:40px 0;">
                                 <span class="material-symbols-outlined" style="font-size:48px;color:rgba(255,255,255,0.1);">search_off</span>
-                                <p style="color:#6b8299;margin-top:8px;font-size:13px;">لا توجد نتائج</p>
+                                <p style="color:#4a5a6d;margin-top:8px;font-size:13px;">لا توجد نتائج</p>
                             </div>
                         </div>
                     </div>
@@ -101,28 +98,25 @@ const AppHeader = {
             showNotif: false,
             searchQuery: '',
             suggestions: [
-                'ايفون 15 برو ماكس',
-                'سامسونج جالكسي S24',
-                'ماك بوك برو',
-                'سماعات ابل',
-                'ساعة ابل ووتش',
-                'لابتوب لينوفو'
+                'ساعات فاخرة',
+                'عطور رجالية',
+                'أحذية رياضية',
+                'محافظ جلدية',
+                'نظارات شمسية',
+                'إكسسوارات'
             ],
             allProducts: [
-                'ايفون 15 برو ماكس', 'ايفون 15', 'ايفون 14', 'ايفون 13',
-                'سامسونج جالكسي S24 الترا', 'سامسونج جالكسي A54', 'سامسونج جالكسي Z فولد',
-                'ماك بوك برو M3', 'ماك بوك اير M2', 'ايباد برو',
-                'سماعات ابل ايربودز برو', 'سماعات سوني', 'سماعات سامسونج',
-                'ساعة ابل ووتش Ultra', 'ساعة سامسونج جالكسي ووتش',
-                'لابتوب ديل XPS', 'لابتوب HP بيفيتش', 'لابتوب لينوفو ثينك باد',
-                ' Galaxy Tab S9', 'ايباد اير', 'تابلت سامسونج',
-                'شاحن لاسلكي', 'كيبورد بلوتوث', 'ماوس لاسلكي', 'حافظة هاتف'
+                'ساعة يد فاخرة', 'ساعة ابل ووتش', 'ساعة سامسونج',
+                'عطر رجالي', 'عطر نسائي', 'عطر oud',
+                'حذاء رياضي أسود', 'حذاء نايك', 'حذاء اديداس',
+                'محفظة جلدية', 'محفظة رجالية', 'حقيبة يد',
+                'نظارة شمسية', 'نظارة طبية', 'نظارة رياضية',
+                'سماعات لاسلكية', 'سماعات بلوتوث', 'سماعات ابل'
             ],
             notifications: [
-                { icon: 'local_offer', title: 'عرض خاص!', desc: 'خصم 30% على جميع الهواتف الذكية لمدة محدودة', time: 'منذ 5 دقائق', unread: true },
-                { icon: 'local_shipping', title: 'تم شحن طلبك', desc: 'طلب رقم #12345 قيد الشحن وسيصل خلال 3 أيام', time: 'منذ ساعة', unread: true },
-                { icon: 'payments', title: 'تذكير بالقسط', desc: 'القسط القادم المستحق خلال 5 أيام - 150,000 د.ع', time: 'منذ 3 ساعات', unread: false },
-                { icon: 'new_releases', title: 'منتجات جديدة!', desc: 'تم اضافة سلسلة جديدة من اجهزة سامسونج', time: 'منذ يوم', unread: false }
+                { icon: 'local_offer', title: 'عرض خاص!', desc: 'خصم 30% على جميع المنتجات الفاخرة', time: 'منذ 5 دقائق', unread: true },
+                { icon: 'local_shipping', title: 'تم شحن طلبك', desc: 'طلب رقم #12345 قيد الشحن', time: 'منذ ساعة', unread: true },
+                { icon: 'new_releases', title: 'منتجات جديدة!', desc: 'تم اضافة تشكيلة جديدة من الساعات', time: 'منذ يوم', unread: false }
             ]
         }
     },
@@ -142,6 +136,15 @@ const AppHeader = {
             this.isDark = !this.isDark;
             document.documentElement.classList.toggle('light-mode');
             localStorage.setItem('gac-theme', this.isDark ? 'dark' : 'light');
+        },
+        toggleMenu() {
+            this.showSearch = !this.showSearch;
+            if (this.showSearch) {
+                this.showNotif = false;
+                this.$nextTick(() => {
+                    if (this.$refs.searchInput) this.$refs.searchInput.focus();
+                });
+            }
         },
         toggleSearch() {
             this.showSearch = !this.showSearch;

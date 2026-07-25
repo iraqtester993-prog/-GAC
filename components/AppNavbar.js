@@ -16,28 +16,20 @@ const AppNavbar = {
                 :class="{ active: currentRoute === '/categories' }"
                 @click="navigate('/categories')"
             >
-                <span class="material-symbols-outlined">category</span>
+                <span class="material-symbols-outlined">grid_view</span>
                 <span class="nav-label">الأقسام</span>
             </button>
 
-            <button
-                class="nav-item"
-                :class="{ active: currentRoute === '/cart' }"
-                @click="navigate('/cart')"
-            >
-                <span class="material-symbols-outlined">shopping_cart</span>
-                <span class="nav-label">السلة</span>
-                <span class="nav-badge" v-if="cartCount > 0">{{ cartCount }}</span>
-            </button>
-
-            <button
-                class="nav-item"
-                :class="{ active: currentRoute === '/installments' }"
-                @click="navigate('/installments')"
-            >
-                <span class="material-symbols-outlined">receipt_long</span>
-                <span class="nav-label">أقساطي</span>
-            </button>
+            <div class="nav-fab-wrap">
+                <button
+                    class="nav-fab"
+                    :class="{ active: currentRoute === '/cart' }"
+                    @click="navigate('/cart')"
+                >
+                    <span class="material-symbols-outlined">shopping_bag</span>
+                    <span class="nav-fab-badge" v-if="cartCount > 0">{{ cartCount }}</span>
+                </button>
+            </div>
 
             <button
                 class="nav-item"
@@ -46,6 +38,15 @@ const AppNavbar = {
             >
                 <span class="material-symbols-outlined">person</span>
                 <span class="nav-label">حسابي</span>
+            </button>
+
+            <button
+                class="nav-item"
+                :class="{ active: currentRoute === '/settings' }"
+                @click="navigate('/settings')"
+            >
+                <span class="material-symbols-outlined">settings</span>
+                <span class="nav-label">الإعدادات</span>
             </button>
         </nav>
     `,

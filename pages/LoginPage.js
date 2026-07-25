@@ -4,14 +4,7 @@ const LoginPage = {
         <div class="login-page" :class="{ 'login-done': loginDone }">
             <div class="login-splash" v-if="showSplash">
                 <div class="splash-logo-wrap">
-                    <div class="splash-logo">
-                        <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="120" height="120" rx="28" fill="#1a3a5c"/>
-                            <text x="60" y="72" text-anchor="middle" font-size="38" font-weight="900" font-family="sans-serif" fill="#c9a243" letter-spacing="-1">GAC</text>
-                            <rect x="20" y="85" width="80" height="3" rx="1.5" fill="#c9a243" opacity="0.3"/>
-                        </svg>
-                    </div>
-                    <div class="splash-sub">العصر الذهبي</div>
+                    <img class="splash-logo" src="icons/logo.svg" alt="GAC Logo">
                     <div class="splash-loader">
                         <div class="splash-loader-bar"></div>
                     </div>
@@ -21,13 +14,7 @@ const LoginPage = {
             <transition name="page-fade">
                 <div class="login-main" v-if="!showSplash">
                     <div class="login-header">
-                        <div class="login-logo">
-                            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="100" height="100" rx="22" fill="#1a3a5c"/>
-                                <text x="50" y="62" text-anchor="middle" font-size="32" font-weight="900" font-family="sans-serif" fill="#c9a243" letter-spacing="-1">GAC</text>
-                                <rect x="16" y="74" width="68" height="2.5" rx="1.25" fill="#c9a243" opacity="0.3"/>
-                            </svg>
-                        </div>
+                        <img class="login-logo" src="icons/logo.svg" alt="GAC Logo">
                         <div class="login-welcome">مرحباً بك</div>
                         <div class="login-subtitle">سجّل دخولك للمتابعة</div>
                     </div>

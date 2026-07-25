@@ -38,13 +38,13 @@ const AccountPage = {
             showWarning: false,
             guestFeature: '',
             allMenuItems: [
-                { icon: 'shopping_bag', title: 'طلباتي', desc: 'تتبع طلباتك وسجلها', guest: false },
+                { icon: 'shopping_bag', title: 'سلة التسوق', desc: 'عرض وإدارة سلتك', guest: false, route: '/cart' },
+                { icon: 'receipt_long', title: 'طلباتي', desc: 'تتبع طلباتك وسجلها', guest: false, route: '/installments' },
                 { icon: 'location_on', title: 'عناويني', desc: 'إدارة عناوين الشحن', guest: false },
                 { icon: 'favorite', title: 'المفضلة', desc: 'المنتجات المحفوظة', guest: false },
-                { icon: 'payment', title: 'طرق الدفع', desc: 'إدارة البطاقات والمحافظ', guest: false },
-                { icon: 'receipt_long', title: 'أقساطي', desc: 'متابعة الاقساط المستحقة', guest: false },
-                { icon: 'support_agent', title: 'الدعم الفني', desc: 'تواصل معنا', guest: true },
-                { icon: 'settings', title: 'الإعدادات', desc: 'تفضيلات الحساب', guest: true },
+                { icon: 'payment', title: 'طرق الدفع', desc: 'Visa, MasterCard, مدى', guest: false },
+                { icon: 'support_agent', title: 'الدعم الفني', desc: 'تواصل معنا', guest: true, route: '/messages' },
+                { icon: 'settings', title: 'الإعدادات', desc: 'تفضيلات الحساب', guest: true, route: '/settings' },
                 { icon: 'info', title: 'عن التطبيق', desc: 'العصر الذهبي v1.0.0', guest: true },
                 { icon: 'logout', title: 'تسجيل الخروج', desc: 'الخروج من الحساب', guest: true }
             ]
@@ -69,6 +69,9 @@ const AccountPage = {
                 this.guestFeature = item.title;
                 this.showWarning = true;
                 return;
+            }
+            if (item.route) {
+                this.$router.push(item.route);
             }
         }
     }

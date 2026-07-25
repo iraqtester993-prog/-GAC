@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 450" fill="none">
+  <defs>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8d48b"/>
+      <stop offset="30%" style="stop-color:#c9a243"/>
+      <stop offset="60%" style="stop-color:#d4af37"/>
+      <stop offset="100%" style="stop-color:#a8842a"/>
+    </linearGradient>
+    <linearGradient id="goldDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#c9a243"/>
+      <stop offset="50%" style="stop-color:#a8842a"/>
+      <stop offset="100%" style="stop-color:#8b6914"/>
+    </linearGradient>
+    <linearGradient id="goldLight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0e6b8"/>
+      <stop offset="50%" style="stop-color:#e8d48b"/>
+      <stop offset="100%" style="stop-color:#c9a243"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Wings -->
+  <g transform="translate(200, 80)" filter="url(#shadow)">
+    <!-- Left Wing -->
+    <path d="M-10,0 C-30,-15 -80,-40 -120,-35 C-100,-25 -70,-10 -45,0 Z" fill="url(#gold)"/>
+    <path d="M-10,5 C-25,-5 -60,-25 -95,-25 C-75,-15 -50,-2 -30,5 Z" fill="url(#goldLight)"/>
+    <path d="M-10,10 C-20,0 -45,-12 -70,-10 C-55,-2 -35,8 -15,12 Z" fill="url(#gold)"/>
+    
+    <!-- Right Wing -->
+    <path d="M10,0 C30,-15 80,-40 120,-35 C100,-25 70,-10 45,0 Z" fill="url(#gold)"/>
+    <path d="M10,5 C25,-5 60,-25 95,-25 C75,-15 50,-2 30,5 Z" fill="url(#goldLight)"/>
+    <path d="M10,10 C20,0 45,-12 70,-10 C55,-2 35,8 15,12 Z" fill="url(#gold)"/>
+    
+    <!-- Center decorative curls -->
+    <path d="M-8,-5 C-12,-15 -5,-25 0,-20 C5,-25 12,-15 8,-5" fill="none" stroke="url(#gold)" stroke-width="3"/>
+    <path d="M-5,-8 C-8,-18 0,-28 0,-22 C0,-28 8,-18 5,-8" fill="none" stroke="url(#goldLight)" stroke-width="2"/>
+    <circle cx="0" cy="-22" r="4" fill="url(#gold)"/>
+  </g>
+  
+  <!-- Top arc -->
+  <path d="M140,75 Q200,40 260,75" fill="none" stroke="url(#gold)" stroke-width="4" stroke-linecap="round"/>
+  <path d="M150,78 Q200,50 250,78" fill="none" stroke="url(#goldLight)" stroke-width="2"/>
+  
+  <!-- GAC Text -->
+  <text x="200" y="200" text-anchor="middle" font-family="serif" font-size="120" font-weight="900" fill="url(#gold)" filter="url(#glow)" letter-spacing="8">GAC</text>
+  <text x="200" y="200" text-anchor="middle" font-family="serif" font-size="120" font-weight="900" fill="none" stroke="url(#goldLight)" stroke-width="1" letter-spacing="8">GAC</text>
+  
+  <!-- Arabic Text -->
+  <text x="200" y="290" text-anchor="middle" font-family="serif" font-size="52" font-weight="900" fill="url(#gold)" filter="url(#glow)">العصر الذهبي</text>
+  <text x="200" y="290" text-anchor="middle" font-family="serif" font-size="52" font-weight="900" fill="none" stroke="url(#goldLight)" stroke-width="0.5">العصر الذهبي</text>
+  
+  <!-- Bottom line -->
+  <line x1="100" y1="320" x2="300" y2="320" stroke="url(#gold)" stroke-width="1" opacity="0.5"/>
+  
+  <!-- English subtitle -->
+  <text x="200" y="350" text-anchor="middle" font-family="sans-serif" font-size="14" fill="url(#gold)" letter-spacing="4" opacity="0.8">GAC | GOLDEN ERA CONSULTANCY</text>
+</svg>

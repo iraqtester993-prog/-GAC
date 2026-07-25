@@ -8,7 +8,8 @@ const routes = [
     { path: '/category/:id', component: CategoryPage },
     { path: '/cart', component: CartPage },
     { path: '/installments', component: InstallmentsPage },
-    { path: '/account', component: AccountPage }
+    { path: '/account', component: AccountPage },
+    { path: '/settings', component: SettingsPage }
 ];
 
 const router = createRouter({
