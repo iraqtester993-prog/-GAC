@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <style>html,body{background:#0a0f1a!important}</style>
+    <style>html,body{background:#111827!important}</style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="theme-color" content="#0a0f1a">
+    <meta name="theme-color" content="#151c2e">
     <meta name="apple-mobile-web-app-title" content="GAC">
-    <meta name="msapplication-TileColor" content="#0a0f1a">
+    <meta name="msapplication-TileColor" content="#151c2e">
     <meta name="description" content="GAC - Golden Age Center - Your integrated online store">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
@@ -20,8 +20,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="https://unpkg.com/vue-router@4/dist/vue-router.global.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    <script src="https://unpkg.com/vue-router@4/dist/vue-router.global.prod.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <script>
         (function() {
@@ -43,13 +43,13 @@
             </template>
             <template v-else>
                 <app-header></app-header>
-                <main class="main-content" @touchstart="onPullStart" @touchmove="onPullMove" @touchend="onPullEnd" ref="mainContent">
+                <main class="main-content" @touchstart="onPullStart" @touchmove="onPullMove" @touchend="onPullEnd" @scroll="onScroll" ref="mainContent">
                     <div class="pull-indicator" :class="{ active: pullActive || refreshing }" :style="{ transform: 'translateY(' + pullOffset + 'px)' }">
                         <div class="pull-shadow"></div>
                         <div class="pull-logo-wrap">
                             <svg class="pull-spinner" :class="{ spinning: refreshing }" viewBox="0 0 50 50">
-                                <circle cx="25" cy="25" r="20" fill="none" stroke="rgba(201,162,67,0.15)" stroke-width="3"/>
-                                <circle cx="25" cy="25" r="20" fill="none" stroke="#c9a243" stroke-width="3" stroke-linecap="round" stroke-dasharray="80 200"/>
+                                <circle cx="25" cy="25" r="20" fill="none" stroke="rgba(212,175,55,0.15)" stroke-width="3"/>
+                                <circle cx="25" cy="25" r="20" fill="none" stroke="#d4af37" stroke-width="3" stroke-linecap="round" stroke-dasharray="80 200"/>
                             </svg>
                             <div class="pull-gac">GAC</div>
                         </div>
@@ -66,6 +66,7 @@
     </div>
 
     <script type="text/javascript" src="components/GuestWarning.js"></script>
+    <script type="text/javascript" src="components/CategoryShowcase.js"></script>
     <script type="text/javascript" src="components/AppHeader.js"></script>
     <script type="text/javascript" src="components/AppNavbar.js"></script>
     <script type="text/javascript" src="pages/LoginPage.js"></script>

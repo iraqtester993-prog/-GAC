@@ -2,21 +2,30 @@ const AppHeader = {
     name: 'AppHeader',
     template: `
         <header class="app-header">
-            <div class="header-right">
-                <button class="header-icon-btn" @click="toggleMenu" title="القائمة">
-                    <span class="material-symbols-outlined">menu</span>
-                </button>
+            <div class="header-bar">
+                <div class="header-right">
+                    <button class="header-icon-btn" @click="toggleTheme" title="تغيير المظهر">
+                        <span class="material-symbols-outlined">{{ isDark ? 'dark_mode' : 'light_mode' }}</span>
+                    </button>
+                </div>
+
+                <div class="header-center">
+                    <img class="header-center-logo" src="icons/logo.png?v=2" alt="GAC" @error="logoError($event)">
+                </div>
+
+                <div class="header-left">
+                    <button class="header-icon-btn" @click="toggleNotif" title="الاشعارات">
+                        <span class="material-symbols-outlined">notifications</span>
+                        <span class="header-badge-dot" v-if="unreadCount > 0"></span>
+                    </button>
+                </div>
             </div>
 
-            <div class="header-title" @click="goHome">
-                <img class="header-logo" src="icons/logo.svg" alt="GAC">
-            </div>
-
-            <div class="header-left">
-                <button class="header-icon-btn" @click="toggleNotif" title="الاشعارات">
-                    <span class="material-symbols-outlined">notifications</span>
-                    <span class="header-badge" v-if="unreadCount > 0">{{ unreadCount }}</span>
-                </button>
+            <div class="header-search-bar" @click="toggleSearch">
+                <div class="header-search-icon">
+                    <span class="material-symbols-outlined">search</span>
+                </div>
+                <span class="header-search-text">البحث</span>
             </div>
 
             <transition name="page-fade">
@@ -50,7 +59,7 @@ const AppHeader = {
                             </div>
                             <div v-if="filteredResults.length === 0" style="text-align:center;padding:40px 0;">
                                 <span class="material-symbols-outlined" style="font-size:48px;color:rgba(255,255,255,0.1);">search_off</span>
-                                <p style="color:#4a5a6d;margin-top:8px;font-size:13px;">لا توجد نتائج</p>
+                                <p style="color:#6b6e76;margin-top:8px;font-size:13px;">لا توجد نتائج</p>
                             </div>
                         </div>
                     </div>
@@ -166,6 +175,10 @@ const AppHeader = {
             this.$router.push('/');
             this.showSearch = false;
             this.showNotif = false;
+        },
+        logoError(e) {
+            e.target.style.display = 'none';
+            e.target.parentElement.innerHTML = '<div class="header-text-logo"><div class="header-logo-en">GAC</div><div class="header-logo-ar">العصر الذهبي</div></div>';
         }
     },
     mounted() {

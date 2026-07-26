@@ -40,7 +40,9 @@ const app = createApp({
             pullStartY: 0,
             pullOffset: 0,
             pullActive: false,
-            refreshing: false
+            refreshing: false,
+            lastScrollY: 0,
+            stickyHeader: false
         }
     },
     computed: {
@@ -55,6 +57,20 @@ const app = createApp({
         this.updateCartCount();
         window.addEventListener('cart-updated', () => this.updateCartCount());
         window.addEventListener('auth-changed', () => this.refreshAuth());
+    },
+    mounted() {
+        this.$nextTick(() => {
+            const content = this.$refs.mainContent;
+            if (content) {
+                content.addEventListener('scroll', this.onScroll, { passive: true });
+            }
+        });
+    },
+    beforeUnmount() {
+        const content = this.$refs.mainContent;
+        if (content) {
+            content.removeEventListener('scroll', this.onScroll);
+        }
     },
     methods: {
         updateCartCount() {
@@ -74,6 +90,35 @@ const app = createApp({
         goToLogin() {
             this.$router.push('/login');
         },
+        onScroll(e) {
+            const content = this.$refs.mainContent;
+            if (!content) return;
+            const currentScroll = content.scrollTop;
+            const isHome = this.$route && this.$route.path === '/';
+            const threshold = 80;
+
+            if (isHome) {
+                if (currentScroll <= 10) {
+                    this.stickyHeader = false;
+                } else if (currentScroll > this.lastScrollY) {
+                    // Scrolling down
+                    this.stickyHeader = false;
+                } else if (currentScroll < this.lastScrollY) {
+                    // Scrolling up
+                    this.stickyHeader = true;
+                }
+            } else {
+                this.stickyHeader = false;
+            }
+
+            if (this.stickyHeader) {
+                document.body.classList.add('header-sticky');
+            } else {
+                document.body.classList.remove('header-sticky');
+            }
+
+            this.lastScrollY = currentScroll;
+        },
         onPullStart(e) {
             if (this.refreshing) return;
             const content = this.$refs.mainContent;
@@ -87,7 +132,7 @@ const app = createApp({
             const diff = e.touches[0].clientY - this.pullStartY;
             if (diff > 0 && this.$refs.mainContent && this.$refs.mainContent.scrollTop <= 0) {
                 this.pullOffset = Math.min(diff * 0.45, 120);
-                e.preventDefault();
+                if (e.cancelable) e.preventDefault();
             }
         },
         onPullEnd() {
@@ -112,6 +157,7 @@ const app = createApp({
 app.component('app-header', AppHeader);
 app.component('app-navbar', AppNavbar);
 app.component('guest-warning', GuestWarning);
+app.component('category-showcase', CategoryShowcase);
 
 app.use(router);
 app.mount('#app');

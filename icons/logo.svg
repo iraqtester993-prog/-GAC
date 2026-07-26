@@ -1,20 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 450" fill="none">
   <defs>
     <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#e8d48b"/>
-      <stop offset="30%" style="stop-color:#c9a243"/>
-      <stop offset="60%" style="stop-color:#d4af37"/>
-      <stop offset="100%" style="stop-color:#a8842a"/>
+      <stop offset="0%" style="stop-color:#f4e4bc"/>
+      <stop offset="30%" style="stop-color:#d4af37"/>
+      <stop offset="60%" style="stop-color:#b8962f"/>
+      <stop offset="100%" style="stop-color:#8f7626"/>
     </linearGradient>
     <linearGradient id="goldDark" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#c9a243"/>
-      <stop offset="50%" style="stop-color:#a8842a"/>
-      <stop offset="100%" style="stop-color:#8b6914"/>
+      <stop offset="0%" style="stop-color:#d4af37"/>
+      <stop offset="50%" style="stop-color:#8f7626"/>
+      <stop offset="100%" style="stop-color:#5e4d1b"/>
     </linearGradient>
     <linearGradient id="goldLight" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#f0e6b8"/>
-      <stop offset="50%" style="stop-color:#e8d48b"/>
-      <stop offset="100%" style="stop-color:#c9a243"/>
+      <stop offset="0%" style="stop-color:#f9f2dc"/>
+      <stop offset="50%" style="stop-color:#f4e4bc"/>
+      <stop offset="100%" style="stop-color:#d4af37"/>
     </linearGradient>
     <filter id="glow">
       <feGaussianBlur stdDeviation="2" result="coloredBlur"/>

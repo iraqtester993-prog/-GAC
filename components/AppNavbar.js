@@ -13,23 +13,31 @@ const AppNavbar = {
 
             <button
                 class="nav-item"
-                :class="{ active: currentRoute === '/categories' }"
-                @click="navigate('/categories')"
+                :class="{ active: currentRoute === '/installments' }"
+                @click="navigate('/installments')"
             >
-                <span class="material-symbols-outlined">grid_view</span>
-                <span class="nav-label">الأقسام</span>
+                <span class="material-symbols-outlined">description</span>
+                <span class="nav-label">الطلبات</span>
             </button>
 
             <div class="nav-fab-wrap">
                 <button
                     class="nav-fab"
-                    :class="{ active: currentRoute === '/cart' }"
-                    @click="navigate('/cart')"
+                    @click="navigate('/categories')"
                 >
-                    <span class="material-symbols-outlined">shopping_bag</span>
-                    <span class="nav-fab-badge" v-if="cartCount > 0">{{ cartCount }}</span>
+                    <span class="material-symbols-outlined nav-fab-icon">shield</span>
                 </button>
+                <span class="nav-fab-label">طلب استشارة جديدة</span>
             </div>
+
+            <button
+                class="nav-item"
+                :class="{ active: currentRoute === '/account' }"
+                @click="navigate('/account')"
+            >
+                <span class="material-symbols-outlined">mail</span>
+                <span class="nav-label">الرسائل</span>
+            </button>
 
             <button
                 class="nav-item"
@@ -39,24 +47,11 @@ const AppNavbar = {
                 <span class="material-symbols-outlined">person</span>
                 <span class="nav-label">حسابي</span>
             </button>
-
-            <button
-                class="nav-item"
-                :class="{ active: currentRoute === '/settings' }"
-                @click="navigate('/settings')"
-            >
-                <span class="material-symbols-outlined">settings</span>
-                <span class="nav-label">الإعدادات</span>
-            </button>
         </nav>
     `,
     computed: {
         currentRoute() {
             return this.$route.path;
-        },
-        cartCount() {
-            const cart = JSON.parse(localStorage.getItem('gac-cart') || '[]');
-            return cart.reduce((sum, item) => sum + item.qty, 0);
         }
     },
     methods: {
