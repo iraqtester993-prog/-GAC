@@ -4,7 +4,7 @@ const LoginPage = {
         <div class="login-page" :class="{ 'login-done': loginDone }">
             <div class="login-splash" v-if="showSplash">
                 <div class="splash-logo-wrap">
-                    <img class="splash-logo" src="icons/logo.svg" alt="GAC Logo">
+                    <img class="splash-logo" src="icons/logo.png" alt="GAC Logo">
                     <div class="splash-loader">
                         <div class="splash-loader-bar"></div>
                     </div>
@@ -14,7 +14,7 @@ const LoginPage = {
             <transition name="page-fade">
                 <div class="login-main" v-if="!showSplash">
                     <div class="login-header">
-                        <img class="login-logo" src="icons/logo.svg" alt="GAC Logo">
+                        <img class="login-logo" src="icons/logo.png" alt="GAC Logo">
                         <div class="login-welcome">مرحباً بك</div>
                         <div class="login-subtitle">سجّل دخولك للمتابعة</div>
                     </div>

@@ -39,7 +39,8 @@ html, body { background: #111827 !important; overflow-x: hidden; font-family: 'C
 /* ========== GOLDEN DECORATIVE WAVES ========== */
 .app-container::before {
     content: ''; position: fixed; top: 0; left: 50%; transform: translateX(-50%);
-    width: 430px; height: 100%; pointer-events: none; z-index: 0;
+    width: 430px; height: 120px; pointer-events: none; z-index: 0;
+    clip-path: inset(0 0 0 0);
     background:
         radial-gradient(ellipse at 15% 10%, rgba(212, 175, 55, 0.06) 0%, transparent 28%),
         radial-gradient(ellipse at 85% 20%, rgba(212, 175, 55, 0.03) 0%, transparent 22%),
