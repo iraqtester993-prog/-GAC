@@ -68,10 +68,6 @@ html, body { background: #111827 !important; overflow-x: hidden; font-family: 'C
     position: relative; z-index: 2;
 }
 
-.header-sticky-content {
-    position: relative; z-index: 3;
-}
-
 .header-right { display: flex; align-items: center; position: relative; z-index: 1; }
 
 .header-icon-btn {
@@ -108,6 +104,7 @@ html, body { background: #111827 !important; overflow-x: hidden; font-family: 'C
     opacity: 0; transform: translateY(-80px);
     pointer-events: none;
     transition: opacity 0.45s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative; z-index: 3;
 }
 .header-sticky-logo {
     height: 56px; width: auto; object-fit: contain;
@@ -156,7 +153,7 @@ body.header-sticky .home-search-bar {
 /* ========== HOME LOGO ========== */
 .home-logo-wrap {
     display: flex; align-items: center; justify-content: center;
-    margin: -20px 16px 8px;
+    margin: 0 16px 8px;
     cursor: pointer;
     transition: opacity 0.45s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
     transform-origin: center top;
@@ -222,7 +219,7 @@ body.header-sticky .home-search-bar {
     overflow-y: auto; overflow-x: hidden;
     -ms-overflow-style: none; scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
-    padding-top: 56px; padding-bottom: 108px;
+    padding-top: 0; padding-bottom: 108px;
     position: relative; z-index: 1;
 }
 .main-content::-webkit-scrollbar { display: none; }
@@ -1156,7 +1153,7 @@ html.light-mode .showcase-item.active .showcase-title { color: #8f7626; text-sha
 
 /* ========== SAFE AREA ========== */
 @supports (padding: env(safe-area-inset-top)) {
-    .app-header { padding-top: env(safe-area-inset-top); height: calc(64px + env(safe-area-inset-top)); }
+    .app-header { padding-top: calc(12px + env(safe-area-inset-top)); }
     .app-navbar { bottom: calc(14px + env(safe-area-inset-bottom)); }
-    .main-content { padding-top: calc(64px + env(safe-area-inset-top)); padding-bottom: calc(108px + env(safe-area-inset-bottom)); }
+    .main-content { padding-top: calc(0px + env(safe-area-inset-top)); padding-bottom: calc(108px + env(safe-area-inset-bottom)); }
 }
