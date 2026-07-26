@@ -9,10 +9,6 @@ const AppHeader = {
                     </button>
                 </div>
 
-                <div class="header-center">
-                    <img class="header-center-logo" src="icons/logo.png?v=2" alt="GAC" @error="logoError($event)">
-                </div>
-
                 <div class="header-left">
                     <button class="header-icon-btn" @click="toggleNotif" title="الاشعارات">
                         <span class="material-symbols-outlined">notifications</span>
@@ -21,11 +17,12 @@ const AppHeader = {
                 </div>
             </div>
 
-            <div class="header-search-bar" @click="toggleSearch">
-                <div class="header-search-icon">
+            <div class="header-sticky-content">
+                <img class="header-sticky-logo" src="icons/logo.png?v=2" alt="GAC" @error="logoError($event)">
+                <div class="header-sticky-search" @click="toggleSearch">
                     <span class="material-symbols-outlined">search</span>
+                    <span class="header-sticky-search-text">البحث</span>
                 </div>
-                <span class="header-search-text">البحث</span>
             </div>
 
             <transition name="page-fade">
